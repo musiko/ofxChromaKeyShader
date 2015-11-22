@@ -194,7 +194,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 	shader_hblur.begin();
 		
 		// Input params to shader
-		shader_hblur.setUniformTexture("baseTex", fbo_base.getTextureReference(), 0);
+		shader_hblur.setUniformTexture("baseTex", fbo_base.getTexture(), 0);
 		shader_hblur.setUniform1f("blurValue", blurValue);
 		// Draw FBO
 		fbo_pingpong.begin();			
@@ -206,7 +206,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 	shader_vblur.begin();
 		
 		// Input params to shader
-		shader_vblur.setUniformTexture("baseTex", fbo_pingpong.getTextureReference(), 0);
+		shader_vblur.setUniformTexture("baseTex", fbo_pingpong.getTexture(), 0);
 		shader_vblur.setUniform1f("blurValue", blurValue);
 		// Draw FBO
 		fbo_base.begin();			
@@ -218,7 +218,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 	shader_dilate.begin();
 		
 		// Input params to shader
-		shader_dilate.setUniformTexture("baseTex", fbo_base.getTextureReference(), 0);
+		shader_dilate.setUniformTexture("baseTex", fbo_base.getTexture(), 0);
 		shader_dilate.setUniform1i("dilateStep", dilateStep);
 		// Draw FBO
 		fbo_pingpong.begin();			
@@ -231,7 +231,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 	shader_erode.begin();
 		
 		// Input params to shader
-		shader_erode.setUniformTexture("baseTex", fbo_pingpong.getTextureReference(), 0);
+		shader_erode.setUniformTexture("baseTex", fbo_pingpong.getTexture(), 0);
 		shader_erode.setUniform1i("erodeStep", erodeStep);
 		// Draw FBO
 		fbo_base.begin();			
@@ -258,7 +258,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 	shader_hblur.begin();
 		
 		// Input params to shader
-		shader_hblur.setUniformTexture("baseTex", fbo_chroma.getTextureReference(), 0);
+		shader_hblur.setUniformTexture("baseTex", fbo_chroma.getTexture(), 0);
 		shader_hblur.setUniform1f("blurValue", blurValue);
 		// Draw FBO
 		fbo_pingpong.begin();			
@@ -270,7 +270,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 	shader_vblur.begin();
 		
 		// Input params to shader
-		shader_vblur.setUniformTexture("baseTex", fbo_pingpong.getTextureReference(), 0);
+		shader_vblur.setUniformTexture("baseTex", fbo_pingpong.getTexture(), 0);
 		shader_vblur.setUniform1f("blurValue", blurValue);
 		// Draw FBO
 		fbo_chroma.begin();			
@@ -282,9 +282,9 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 	shader_final.begin();		
 		// Input params to shader
 		shader_final.setUniformTexture("baseTex", input_tex, 0);
-		shader_final.setUniformTexture("baseMaskTex", fbo_base.getTextureReference(), 1);
-		shader_final.setUniformTexture("detailMaskTex", fbo_detail.getTextureReference(), 2);
-		shader_final.setUniformTexture("inverted_chromaMaskTex", fbo_chroma.getTextureReference(), 3);
+		shader_final.setUniformTexture("baseMaskTex", fbo_base.getTexture(), 1);
+		shader_final.setUniformTexture("detailMaskTex", fbo_detail.getTexture(), 2);
+		shader_final.setUniformTexture("inverted_chromaMaskTex", fbo_chroma.getTexture(), 3);
 		shader_final.setUniform4f("bgColor", bgColor.get().r, bgColor.get().g, bgColor.get().b, bgColor.get().a);
 		shader_final.setUniform1f("multiplyFilterHueOffset", multiplyFilterHueOffset);
 		shader_final.setUniform2f("endMaskVal", endMaskClip.get().x, endMaskClip.get().y);
@@ -311,7 +311,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 		ofPushMatrix();
 			ofTranslate(width/2, height/2);
 			ofScale(photoZoom, photoZoom);
-			fbo_pingpong.getTextureReference().drawSubsection(photoOffset.get().x + clipX - width/2, photoOffset.get().y + clipY - height/2, clipW, clipH, clipX, clipY, clipW, clipH);
+			fbo_pingpong.getTexture().drawSubsection(photoOffset.get().x + clipX - width/2, photoOffset.get().y + clipY - height/2, clipW, clipH, clipX, clipY, clipW, clipH);
 		ofPopMatrix();
 	fbo_final.end();
 }
