@@ -86,7 +86,7 @@ public:
 	 
 			void main(void)
 			{
-				vec3 sum = vec3(0.0);
+				vec4 sum = vec4(0.0);
 				float blurSize = blurValue/512.0;
 		
 				// Blur in X (horizontal)
@@ -100,7 +100,7 @@ public:
 				sum += texture2DRect(baseTex, vec2(texcoord0.x + 3.0*blurSize, texcoord0.y)) * 0.09;
 				sum += texture2DRect(baseTex, vec2(texcoord0.x + 4.0*blurSize, texcoord0.y)) * 0.05;
 
-				gl_FragColor = vec4(sum, 1.0);
+				gl_FragColor = vec4(sum.rgb, 1.0);
 			}
 		);
 
