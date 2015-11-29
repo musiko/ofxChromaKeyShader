@@ -32,6 +32,8 @@ public:
 	ofxChromaKeyShader *chromakey;
 	ofVideoGrabber webcam;
 	int camW, camH;
+    
+    ofFbo checkerboardTex;
 	
 	ofxPanel chromaGui;
 	bool bShowGui;

@@ -93,14 +93,28 @@ void ofApp::drawDebugMasks() {
 
 //--------------------------------------------------------------
 void ofApp::drawCheckerboard(float x, float y, int width, int height, int size) {
-	int numWidth = width/size;
-	int numHeight = height/size;
-	for(int h=0; h<numHeight; h++) {
-		for(int w=0; w<numWidth; w++) {
-			((h+w)%2 == 0) ? ofSetColor(0, 255) : ofSetColor(255, 255);
-			ofRect(x + w*size, y + h*size, size, size);
-		}
-	}
+    if (!checkerboardTex.isAllocated()) {
+        checkerboardTex.allocate(width, height);
+        
+        ofPushStyle();
+        checkerboardTex.begin();
+        ofClear(255, 255, 255, 255);
+        int numWidth = width/size;
+        int numHeight = height/size;
+        for(int h=0; h<numHeight; h++) {
+            for(int w=0; w<numWidth; w++) {
+                if ((h+w)%2 == 0) {
+                    ofSetColor(ofColor::black);
+                    ofDrawRectangle(w*size, h*size, size, size);
+                }
+            }
+        }
+        checkerboardTex.end();
+        ofPopStyle();
+    }
+
+    ofSetColor(255, 255);
+    checkerboardTex.draw(x, y);
 }
 
 //--------------------------------------------------------------

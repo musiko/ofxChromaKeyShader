@@ -113,38 +113,91 @@ void ofxChromaKeyShader::loadShaders(){
 	shader_erode.unload();
 	shader_chroma.unload();
 	shader_final.unload();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.detailmask......";
-	shader_detail.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.detailmask);
-	shader_detail.linkProgram();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.basemask......";
-	shader_base.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.basemask);
-	shader_base.linkProgram();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.blurHorizontal......";
-	shader_hblur.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.blurHorizontal);
-	shader_hblur.linkProgram();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.blurVertical......";
-	shader_vblur.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.blurVertical);
-	shader_vblur.linkProgram();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.dilation......";
-	shader_dilate.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.dilation);
-	shader_dilate.linkProgram();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.erosion......";
-	shader_erode.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.erosion);
-	shader_erode.linkProgram();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.chromamask......";
-	shader_chroma.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.chromamask);
-	shader_chroma.linkProgram();
-
-	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.finalmask......";
-	shader_final.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.finalmask);
-	shader_final.linkProgram();
+    
+    
+    if(ofIsGLProgrammableRenderer()){
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Programmable renderer detected.";
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.detailmask......";
+        shader_detail.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_detail.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.detailmask);
+        shader_detail.bindDefaults();
+        shader_detail.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.basemask......";
+        shader_base.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_base.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.basemask);
+        shader_base.bindDefaults();
+        shader_base.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.blurHorizontal......";
+        shader_hblur.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_hblur.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.blurHorizontal);
+        shader_hblur.bindDefaults();
+        shader_hblur.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.blurVertical......";
+        shader_vblur.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_vblur.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.blurVertical);
+        shader_vblur.bindDefaults();
+        shader_vblur.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.dilation......";
+        shader_dilate.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_dilate.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.dilation);
+        shader_dilate.bindDefaults();
+        shader_dilate.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.erosion......";
+        shader_erode.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_erode.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.erosion);
+        shader_erode.bindDefaults();
+        shader_erode.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.chromamask......";
+        shader_chroma.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_chroma.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.chromamask);
+        shader_chroma.bindDefaults();
+        shader_chroma.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.finalmask......";
+        shader_final.setupShaderFromSource(GL_VERTEX_SHADER, chromakeyshaders150.vertex);
+        shader_final.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders150.finalmask);
+        shader_final.bindDefaults();
+        shader_final.linkProgram();
+    }
+    else {
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.detailmask......";
+        shader_detail.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.detailmask);
+        shader_detail.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.basemask......";
+        shader_base.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.basemask);
+        shader_base.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.blurHorizontal......";
+        shader_hblur.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.blurHorizontal);
+        shader_hblur.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.blurVertical......";
+        shader_vblur.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.blurVertical);
+        shader_vblur.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.dilation......";
+        shader_dilate.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.dilation);
+        shader_dilate.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.erosion......";
+        shader_erode.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.erosion);
+        shader_erode.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.chromamask......";
+        shader_chroma.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.chromamask);
+        shader_chroma.linkProgram();
+        
+        ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "Loading shader.finalmask......";
+        shader_final.setupShaderFromSource(GL_FRAGMENT_SHADER, chromakeyshaders.finalmask);
+        shader_final.linkProgram();
+    }
 
 	ofLogVerbose("ofxChromaKeyShader.loadShaders()") << "All shaders loaded";
 }
