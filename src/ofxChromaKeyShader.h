@@ -27,6 +27,7 @@
 #include "ofMain.h"
 #include "ofxCv.h"
 #include "ChromeKeyShaders.h"
+#include "ChromeKeyShaders150.h"
 
 class ofxChromaKeyShader
 {
@@ -51,6 +52,7 @@ public:
 
 	// ==================== Variables ====================
 	ChromaKeyShaders chromakeyshaders;
+    ChromaKeyShaders150 chromakeyshaders150;
 	int width, height;
 
 	// Shader & FBO
