@@ -40,7 +40,8 @@ public:
 	void loadShaders();
 	void updateBgColorPos(float x, float y);
 	void updateBgColor(ofPixelsRef camPixRef);
-	void updateChromakeyMask(ofTexture input_tex, ofTexture bg_tex);
+    void updateChromakeyMask(ofTexture input_tex, ofTexture bg_tex);
+    void updateChromakeyMask(ofTexture input_tex);
 
 	void drawDetailMask(float x, float y, float w, float h);
 	void drawBaseMask(float x, float y, float w, float h);
