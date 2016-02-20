@@ -217,7 +217,7 @@ void ofxChromaKeyShader::updateBgColor(ofPixelsRef camPixRef){
 }
 
 //--------------------------------------------------------------
-void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_tex){
+void ofxChromaKeyShader::updateChromakeyMask(const ofTexture& input_tex, const ofTexture& bg_tex){
     updateChromakeyMask(input_tex);
     
     // == 5. Combine with BG =================================
@@ -239,7 +239,7 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 }
 
 //--------------------------------------------------------------
-void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex){
+void ofxChromaKeyShader::updateChromakeyMask(const ofTexture& input_tex){
 	// == 1. Detailed mask ==========================================================
 	shader_detail.begin();
 		// Input params to shader
