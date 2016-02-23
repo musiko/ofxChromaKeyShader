@@ -217,7 +217,29 @@ void ofxChromaKeyShader::updateBgColor(ofPixelsRef camPixRef){
 }
 
 //--------------------------------------------------------------
-void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_tex){
+void ofxChromaKeyShader::updateChromakeyMask(const ofTexture& input_tex, const ofTexture& bg_tex){
+    updateChromakeyMask(input_tex);
+    
+    // == 5. Combine with BG =================================
+    float clipX = clippingMaskTL.get().x;
+    float clipY = clippingMaskTL.get().y;
+    float clipW = clippingMaskBR.get().x - clippingMaskTL.get().x;
+    float clipH = clippingMaskBR.get().y - clippingMaskTL.get().y;
+    fbo_final.begin();
+        ofClear(0.f, 0.f);
+        ofSetColor(255,255,255);
+        if(bg_tex.isAllocated())
+            bg_tex.draw(0, 0, width, height);
+        ofPushMatrix();
+            ofTranslate(width/2, height/2);
+            ofScale(photoZoom, photoZoom);
+            fbo_pingpong.getTexture().drawSubsection(photoOffset.get().x + clipX - width/2, photoOffset.get().y + clipY - height/2, clipW, clipH, clipX, clipY, clipW, clipH);
+        ofPopMatrix();
+    fbo_final.end();
+}
+
+//--------------------------------------------------------------
+void ofxChromaKeyShader::updateChromakeyMask(const ofTexture& input_tex){
 	// == 1. Detailed mask ==========================================================
 	shader_detail.begin();
 		// Input params to shader
@@ -350,21 +372,4 @@ void ofxChromaKeyShader::updateChromakeyMask(ofTexture input_tex, ofTexture bg_t
 			input_tex.draw(0, 0, width, height);
 		fbo_pingpong.end();
 	shader_final.end();
-
-	// == 5. Combine with BG =================================
-	float clipX = clippingMaskTL.get().x;
-	float clipY = clippingMaskTL.get().y;
-	float clipW = clippingMaskBR.get().x - clippingMaskTL.get().x;
-	float clipH = clippingMaskBR.get().y - clippingMaskTL.get().y;
-	fbo_final.begin();
-		ofClear(0.f, 0.f);
-		ofSetColor(255,255,255);
-		if(bg_tex.isAllocated())
-			bg_tex.draw(0, 0, width, height);
-		ofPushMatrix();
-			ofTranslate(width/2, height/2);
-			ofScale(photoZoom, photoZoom);
-			fbo_pingpong.getTexture().drawSubsection(photoOffset.get().x + clipX - width/2, photoOffset.get().y + clipY - height/2, clipW, clipH, clipX, clipY, clipW, clipH);
-		ofPopMatrix();
-	fbo_final.end();
 }
