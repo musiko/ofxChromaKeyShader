@@ -1,7 +1,7 @@
 ofxChromaKeyShader
 ==================
 
-Chroma keying with shader. Based on ofxGreenscreen and this: http://www.blendedplanet.com/?The_Ultimate_Keyer
+Chroma keying with shader. Based on ofxGreenscreen and this: http://www.blendedplanet.com/blog/?Planet_Blog__The_Ultimate_Keyer
 
 Tested with Windows 7 + OF 0.9.0 + VS2015
 
