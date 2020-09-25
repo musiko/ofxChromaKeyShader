@@ -1,14 +1,22 @@
-ofxChromaKeyShader
-==================
+# ofxChromaKeyShader
 
-Chroma keying with shader. Based on ofxGreenscreen and this: http://www.blendedplanet.com/blog/?Planet_Blog__The_Ultimate_Keyer
+## Introduction
 
-Tested with Windows 7 + OF 0.9.0 + VS2015
+- A shader-based chroma keying addon for openFrameworks
+- Based on [ofxGreenscreen](https://github.com/underdoeg/ofxGreenscreen) and [the Blender tutorial by The Blended Planet](http://www.blendedplanet.com/blog/?Planet_Blog__The_Ultimate_Keyer)
+- Tested with openFrameworks v0.11.0
 
-##Video Demo
+## Required addons
 
-https://vimeo.com/132824761
+- [ofxCv](https://github.com/kylemcdonald/ofxCv)
+- ofxOpenCV
 
-##Screen shot
+## Demo Video
+
+- [Vimeo](https://vimeo.com/132824761)
+
+## Screen shot
 
 ![screen shot](https://raw.githubusercontent.com/musiko/ofxChromaKeyShader/master/screenshots/screenshot2.png)
+
+
