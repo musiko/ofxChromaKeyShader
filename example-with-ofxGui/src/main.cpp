@@ -3,10 +3,10 @@
 
 //========================================================================
 int main( ){
-    ofGLWindowSettings settings;
-    settings.setGLVersion(3, 2); // Using programmable renderer. Comment out this line to use the 'standard' GL renderer.
-    settings.width = 1024;
-    settings.height = 768;
-    ofCreateWindow(settings);
+    ofWindowSettings winSettings;
+    winSettings.setSize(1024, 768);
+    ofGLWindowSettings glSettings(winSettings);
+    glSettings.setGLVersion(3, 2); // Using programmable renderer. Comment out this line to use the 'standard' GL renderer.
+    ofCreateWindow(glSettings);
     ofRunApp(new ofApp());
 }
