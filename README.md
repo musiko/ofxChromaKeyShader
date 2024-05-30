@@ -3,7 +3,7 @@
 ## Introduction
 
 - A shader-based chroma keying addon for openFrameworks
-- Based on [ofxGreenscreen](https://github.com/underdoeg/ofxGreenscreen) and [the Blender tutorial by The Blended Planet](http://www.blendedplanet.com/blog/?Planet_Blog__The_Ultimate_Keyer)
+- Based on [ofxGreenscreen](https://github.com/underdoeg/ofxGreenscreen) and [the Blender tutorial by The Blended Planet](https://archive.ph/RHWiW)
 - Tested with openFrameworks v0.11.0
 
 ## Required addons
